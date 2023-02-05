@@ -1,0 +1,45 @@
+.header {
+  background: rgba(250, 254, 255, 0.5);
+
+  height: 75px;
+  width: 100vw;
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+}
+.header__appname {
+  font-size: 24px;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.today-weather {
+  width: 700px;
+  height: 300px;
+  background: rgba(250, 254, 255, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.today-weather__temperature {
+  font-size: 104px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.today-weather__icon {
+  position: absolute;
+  z-index: 2;
+
+  margin-left: 185px;
+}
