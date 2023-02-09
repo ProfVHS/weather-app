@@ -14,7 +14,7 @@ function App() {
 
       <div className="wrapper">
         <div className="today-weather">
-          <Temperature />
+          <Temperature temperature={24} condition="zachmurzenie" />
         </div>
       </div>
     </>
