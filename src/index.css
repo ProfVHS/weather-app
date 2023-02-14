@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+:root {
+  background: linear-gradient(180deg, #cffcfc 0%, #fde8bf 100%);
+  width: 100vw;
+  height: 100vh;
+
+  font-family: "Comfortaa", cursive;
+}
+body {
+  margin: 0 !important;
+}
