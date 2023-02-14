@@ -1,0 +1,121 @@
+.header {
+  background: rgba(250, 254, 255, 0.5);
+  height: 75px;
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.header__appname {
+  font-size: 24px;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.today-weather {
+  width: 45%;
+  min-height: 300px;
+  background: rgba(250, 254, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.today-weather__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.today-weather__temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.today-weather__temperature__data {
+  font-size: 104px;
+  font-weight: bold;
+  z-index: 1;
+}
+.today-weather__temperature__icon {
+  position: relative;
+  z-index: 2;
+  margin-left: -4em;
+}
+.today-weather__counters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressbar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progressbar__outer {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  box-shadow: inset 0px 0px 10px -1px rgba(0, 0, 0, 0.15);
+  align-items: center;
+}
+.progressbar__inner {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.progressbar__inner__title {
+  font-size: 10px;
+}
+.progressbar__inner__value {
+  font-size: 22px;
+}
+.progressbar__circle {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 12px;
+  stroke-dasharray: 264;
+  transition: 0.5s ease;
+}
+.progressbar__backlight {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 4px;
+  stroke-dasharray: 326;
+  transition: 0.5s ease;
+  filter: blur(5px);
+}
+
+.progressbar svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(90deg);
+}
+
+.infobox {
+  background-color: #fff;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
+}/*# sourceMappingURL=App.css.map */
