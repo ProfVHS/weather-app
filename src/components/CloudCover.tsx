@@ -1,14 +1,14 @@
 import React from "react";
-interface HumidityProps {
-  humidity: number;
+interface CloudCoverProps {
+  cloudcover: number;
 }
-function Humidity({ humidity }: HumidityProps) {
+function CloudCover({ cloudcover }: CloudCoverProps) {
   return (
     <div className="progressbar">
       <div className="progressbar__outer">
         <div className="progressbar__inner">
-          <span className="progressbar__inner__title">Humidity</span>
-          <span className="progressbar__inner__value">{humidity}%</span>
+          <span className="progressbar__inner__title">Cloud cover</span>
+          <span className="progressbar__inner__value">{cloudcover}%</span>
         </div>
       </div>
       <svg
@@ -45,7 +45,7 @@ function Humidity({ humidity }: HumidityProps) {
           cy="60px"
           r="42px"
           strokeLinecap="round"
-          style={{ strokeDashoffset: 264 - 264 * (humidity / 100) }}
+          style={{ strokeDashoffset: 264 - 264 * (cloudcover / 100) }}
         />
         <circle
           className="progressbar__backlight"
@@ -53,11 +53,11 @@ function Humidity({ humidity }: HumidityProps) {
           cy="60px"
           r="50px"
           strokeLinecap="round"
-          style={{ strokeDashoffset: 326 - 326 * (humidity / 100) }}
+          style={{ strokeDashoffset: 326 - 326 * (cloudcover / 100) }}
         />
       </svg>
     </div>
   );
 }
 
-export default Humidity;
+export default CloudCover;

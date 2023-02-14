@@ -24,13 +24,19 @@
 
 .today-weather {
   width: 45%;
-  height: 300px;
+  min-height: 300px;
   background: rgba(250, 254, 255, 0.5);
 
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__temperature {
     display: flex;
@@ -51,12 +57,20 @@
       margin-left: -4em;
     }
   }
+  &__counters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .progressbar {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &__outer {
     height: 80px;
     width: 80px;
@@ -86,19 +100,33 @@
       font-size: 22px;
     }
   }
+  &__circle {
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 12px;
+    stroke-dasharray: 264;
+    transition: 0.5s ease;
+  }
+  &__backlight {
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 4px;
+    stroke-dasharray: 326;
+    transition: 0.5s ease;
+    filter: blur(5px);
+  }
 }
 
-svg {
+.progressbar svg {
   position: absolute;
   top: 0;
   left: 0;
   transform: rotate(90deg);
-  border-radius: 50%;
 }
 
-.progressbar circle {
-  fill: none;
-  stroke: url(#GradientColor);
-  stroke-width: 12px;
-  stroke-dasharray: 264;
+.infobox {
+  background-color: #fff;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
 }

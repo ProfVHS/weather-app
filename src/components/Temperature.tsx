@@ -10,11 +10,13 @@ interface TemperatureProps {
 function Temperature({ temperature, condition }: TemperatureProps) {
   return (
     <>
-      <div className="today-weather__temperature">
-        <div className="today-weather__temperature__data">{temperature}°</div>
-        <img src={SunCloudly} className="today-weather__temperature__icon" />
+      <div className="today-weather__box">
+        <div className="today-weather__temperature">
+          <div className="today-weather__temperature__data">{temperature}°</div>
+          <img src={SunCloudly} className="today-weather__temperature__icon" />
+        </div>
+        <span>{condition}</span>
       </div>
-      <span>{condition}</span>
     </>
   );
 }
