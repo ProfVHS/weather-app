@@ -1,8 +1,9 @@
 import { useState } from "react";
-import "./App.css";
+import "./css/App.css";
 
 import SunCloudly from "./assets/images/sun-cloudly.svg";
 import Temperature from "./components/Temperature";
+import Humidity from "./components/Humidity";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className="wrapper">
         <div className="today-weather">
           <Temperature temperature={24} condition="zachmurzenie" />
+          <Humidity />
         </div>
       </div>
     </>
