@@ -19,9 +19,9 @@ function App() {
         <div className="today-weather">
           <Temperature temperature={24} condition="zachmurzenie" />
           <div className="today-weather_box">
-            <InfoBox feelslike={20} windspeed={14} uvindex={5} />
+            <InfoBox feelslike={15} windspeed={14} uvindex={1} />
             <div className="today-weather__counters">
-              <Humidity humidity={30} />
+              <Humidity humidity={12} />
               <CloudCover cloudcover={56} />
             </div>
           </div>
