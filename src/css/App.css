@@ -6,7 +6,7 @@
 
 .header {
   background: rgba(250, 254, 255, 0.5);
-  height: 75px;
+  height: 54px;
   width: 100vw;
   position: absolute;
   display: flex;
@@ -22,12 +22,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 42px;
+}
+.wrapper__forecasts {
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
 }
 
 .today-weather {
   width: 45%;
   min-height: 300px;
   background: rgba(250, 254, 255, 0.5);
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.02);
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,4 +184,46 @@
 }
 .infobox__uvicon.veryhigh {
   background-color: #ed144a;
+}
+
+.forecastwrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+.forecastwrapper__day {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.forecastbox {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(250, 254, 255, 0.5);
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.02);
+}
+.forecastbox__temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.forecastbox__temperature span {
+  font-size: 42px;
+  position: relative;
+  right: -18%;
+  font-weight: bold;
+}
+.forecastbox__temperature img {
+  position: relative;
+}
+.forecastbox__condition {
+  font-size: 12px;
 }/*# sourceMappingURL=App.css.map */

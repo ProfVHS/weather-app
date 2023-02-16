@@ -6,6 +6,7 @@ import Temperature from "./components/Temperature";
 import Humidity from "./components/Humidity";
 import CloudCover from "./components/CloudCover";
 import InfoBox from "./components/InfoBox";
+import ForecastBox from "./components/ForecastBox";
 
 function App() {
   return (
@@ -25,6 +26,23 @@ function App() {
               <CloudCover cloudcover={56} />
             </div>
           </div>
+        </div>
+        <div className="wrapper__forecasts">
+          <ForecastBox
+            day="Tomorrow"
+            temperature={18}
+            condition="Partly cloudy"
+          />
+          <ForecastBox
+            day="Monday"
+            temperature={18}
+            condition="Partly cloudy"
+          />
+          <ForecastBox
+            day="Tuesday"
+            temperature={18}
+            condition="Partly cloudy"
+          />
         </div>
       </div>
     </>
