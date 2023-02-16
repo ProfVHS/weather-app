@@ -17,7 +17,7 @@ function App() {
 
       <div className="wrapper">
         <div className="today-weather">
-          <Temperature temperature={24} condition="zachmurzenie" />
+          <Temperature temperature={24} condition="Partly cloudy" />
           <div className="today-weather_box">
             <InfoBox feelslike={15} windspeed={14} uvindex={1} />
             <div className="today-weather__counters">

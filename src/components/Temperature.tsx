@@ -15,7 +15,7 @@ function Temperature({ temperature, condition }: TemperatureProps) {
           <div className="today-weather__temperature__data">{temperature}°</div>
           <img src={SunCloudly} className="today-weather__temperature__icon" />
         </div>
-        <span>{condition}</span>
+        <span className="today-weather__condition">{condition}</span>
       </div>
     </>
   );
