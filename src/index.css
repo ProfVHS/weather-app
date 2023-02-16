@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
 :root {
   background: linear-gradient(180deg, #cffcfc 0%, #fde8bf 100%);
+  background-attachment: fixed;
   width: 100vw;
   height: 100vh;
 
