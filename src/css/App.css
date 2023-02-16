@@ -33,10 +33,17 @@
   align-items: center;
 }
 .today-weather__box {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.today-weather__condition {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 .today-weather__temperature {
   display: flex;
