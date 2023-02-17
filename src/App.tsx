@@ -9,8 +9,14 @@ import InfoBox from "./components/InfoBox";
 import ForecastBox from "./components/ForecastBox";
 
 function App() {
+  //=== NIGHT THEME ===//
+  const date = new Date();
+  const nightTime = 21;
+  const currentHour = date.getHours();
+  //==================//
+
   return (
-    <>
+    <div className={`${currentHour === nightTime && "dark"}`}>
       <div className="header">
         <img src={SunCloudly} width={70} />
         <span className="header__appname">Weather App</span>
@@ -45,7 +51,7 @@ function App() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

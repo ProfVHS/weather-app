@@ -38,6 +38,26 @@ function Humidity({ humidity }: HumidityProps) {
               />
             </stop>
           </linearGradient>
+          <linearGradient id="GradientColorDark" gradientTransform="rotate(90)">
+            <stop offset="0%" stopColor="#FF8AFA">
+              <animate
+                attributeName="stop-color"
+                attributeType="CSS"
+                values="#FF8AFA;#A851FF;#A851FF;#FF8AFA"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+            </stop>
+            <stop offset="100%" stopColor="#A851FF">
+              <animate
+                attributeName="stop-color"
+                attributeType="CSS"
+                values="#A851FF;#FF8AFA;#FF8AFA;#A851FF"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+            </stop>
+          </linearGradient>
         </defs>
         <circle
           className="progressbar__circle"
