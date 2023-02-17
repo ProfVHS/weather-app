@@ -137,6 +137,9 @@
   stroke-dasharray: 264;
   transition: 0.5s ease;
 }
+.dark .progressbar__circle {
+  stroke: url(#GradientColorDark);
+}
 .progressbar__backlight {
   fill: none;
   stroke: url(#GradientColor);
@@ -144,6 +147,9 @@
   stroke-dasharray: 326;
   transition: 0.5s ease;
   filter: blur(6px);
+}
+.dark .progressbar__backlight {
+  stroke: url(#GradientColorDark);
 }
 
 .progressbar svg {
@@ -154,7 +160,7 @@
 }
 
 .infobox {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 16px;
   padding: 10px 20px;
   display: grid;
