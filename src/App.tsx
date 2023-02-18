@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createElement, useState } from "react";
 import "./css/App.css";
 
 import SunCloudly from "./assets/images/sun-cloudly.svg";
@@ -15,6 +15,16 @@ function App() {
   const currentHour = date.getHours();
   //==================//
 
+  //=== AUTOCOMPLETE INPUT ===//
+  const [cityInput, setCityInput] = useState<string>();
+  const [isFocus, setIsFocus] = useState<boolean>();
+  const citiesName = ["Slupsk", "Warsaw", "Cracow"];
+
+  document.addEventListener("click", () => {
+    setIsFocus(false);
+  });
+  //==========================//
+
   return (
     <div className={`${currentHour === nightTime && "dark"}`}>
       <div className="header">
@@ -24,6 +34,21 @@ function App() {
 
       <div className="wrapper">
         <div className="today-weather">
+          <div className="autocomplete" id="autocomplete">
+            <input
+              className="autocomplete__cityname"
+              placeholder="City"
+              value={cityInput}
+              onChange={(e) => {
+                setCityInput(e.target.value);
+                setIsFocus(true);
+              }}
+            />
+            {isFocus &&
+              citiesName.map((cityName) => (
+                <div className="autocomplete__item">{cityName}</div>
+              ))}
+          </div>
           <Temperature temperature={24} condition="Partly cloudy" />
           <div className="today-weather_box">
             <InfoBox feelslike={15} windspeed={14} uvindex={1} />

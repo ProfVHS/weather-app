@@ -42,6 +42,7 @@
 }
 
 .today-weather {
+  position: relative;
   width: 45%;
   min-width: 600px;
   min-height: 300px;
@@ -98,6 +99,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.autocomplete {
+  position: absolute;
+  top: 5px;
+  z-index: 99;
+
+  &__cityname {
+    font-size: 28px;
+    font-family: "Comfortaa", cursive;
+    width: 200px;
+    text-align: center;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    transition: 0.3s ease;
+  }
+  &__cityname:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(0, 106, 255, 0.8);
+  }
+  &__item {
+    background-color: white;
+    text-align: center;
+    padding: 8px 0;
+
+    border: 1px solid black;
+    z-index: 99;
   }
 }
 
