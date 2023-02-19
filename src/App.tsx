@@ -7,26 +7,19 @@ import Humidity from "./components/Humidity";
 import CloudCover from "./components/CloudCover";
 import InfoBox from "./components/InfoBox";
 import ForecastBox from "./components/ForecastBox";
+import AutocompleteInput from "./components/AutocompleteInput";
 
 function App() {
   //=== NIGHT THEME ===//
   const date = new Date();
   const nightTime = 21;
   const currentHour = date.getHours();
+
+  currentHour >= nightTime && document.body.classList.add("dark");
   //==================//
 
-  //=== AUTOCOMPLETE INPUT ===//
-  const [cityInput, setCityInput] = useState<string>();
-  const [isFocus, setIsFocus] = useState<boolean>();
-  const citiesName = ["Slupsk", "Warsaw", "Cracow"];
-
-  document.addEventListener("click", () => {
-    setIsFocus(false);
-  });
-  //==========================//
-
   return (
-    <div className={`${currentHour === nightTime && "dark"}`}>
+    <>
       <div className="header">
         <img src={SunCloudly} width={70} />
         <span className="header__appname">Weather App</span>
@@ -34,21 +27,7 @@ function App() {
 
       <div className="wrapper">
         <div className="today-weather">
-          <div className="autocomplete" id="autocomplete">
-            <input
-              className="autocomplete__cityname"
-              placeholder="City"
-              value={cityInput}
-              onChange={(e) => {
-                setCityInput(e.target.value);
-                setIsFocus(true);
-              }}
-            />
-            {isFocus &&
-              citiesName.map((cityName) => (
-                <div className="autocomplete__item">{cityName}</div>
-              ))}
-          </div>
+          <AutocompleteInput />
           <Temperature temperature={24} condition="Partly cloudy" />
           <div className="today-weather_box">
             <InfoBox feelslike={15} windspeed={14} uvindex={1} />
@@ -76,7 +55,7 @@ function App() {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -52,6 +52,7 @@
   border-radius: 16px;
 
   margin-top: 54px;
+  padding: 12px 0;
 
   display: flex;
   justify-content: center;
@@ -122,13 +123,32 @@
     outline: none;
     border-bottom: 1px solid rgba(0, 106, 255, 0.8);
   }
-  &__item {
+  &__list {
     background-color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 0px;
+    overflow-y: scroll;
+    max-height: 100px;
+  }
+  &__item {
     text-align: center;
     padding: 8px 0;
-
-    border: 1px solid black;
     z-index: 99;
+    transition: 0.2s ease;
+    border-radius: 8px;
+
+    &__prefix {
+      text-transform: capitalize;
+      font-weight: bolder;
+    }
+
+    &.selected {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+  }
+  &__item:hover {
+    background-color: rgba(0, 0, 0, 0.04);
   }
 }
 
