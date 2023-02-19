@@ -41,6 +41,7 @@
 }
 
 .today-weather {
+  position: relative;
   width: 45%;
   min-width: 600px;
   min-height: 300px;
@@ -48,6 +49,7 @@
   box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.02);
   border-radius: 16px;
   margin-top: 54px;
+  padding: 12px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,6 +94,51 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.autocomplete {
+  position: absolute;
+  top: 5px;
+  z-index: 99;
+}
+.autocomplete__cityname {
+  font-size: 28px;
+  font-family: "Comfortaa", cursive;
+  width: 200px;
+  text-align: center;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+}
+.autocomplete__cityname:focus {
+  outline: none;
+  border-bottom: 1px solid rgba(0, 106, 255, 0.8);
+}
+.autocomplete__list {
+  background-color: white;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 0px;
+  overflow-y: scroll;
+  max-height: 100px;
+}
+.autocomplete__item {
+  text-align: center;
+  padding: 8px 0;
+  z-index: 99;
+  transition: 0.2s ease;
+  border-radius: 8px;
+}
+.autocomplete__item__prefix {
+  text-transform: capitalize;
+  font-weight: bolder;
+}
+.autocomplete__item.selected {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.autocomplete__item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .progressbar {

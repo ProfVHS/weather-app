@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createElement, useState } from "react";
 import "./css/App.css";
 
 import SunCloudly from "./assets/images/sun-cloudly.svg";
@@ -7,16 +7,19 @@ import Humidity from "./components/Humidity";
 import CloudCover from "./components/CloudCover";
 import InfoBox from "./components/InfoBox";
 import ForecastBox from "./components/ForecastBox";
+import AutocompleteInput from "./components/AutocompleteInput";
 
 function App() {
   //=== NIGHT THEME ===//
   const date = new Date();
   const nightTime = 21;
   const currentHour = date.getHours();
+
+  currentHour >= nightTime && document.body.classList.add("dark");
   //==================//
 
   return (
-    <div className={`${currentHour === nightTime && "dark"}`}>
+    <>
       <div className="header">
         <img src={SunCloudly} width={70} />
         <span className="header__appname">Weather App</span>
@@ -24,6 +27,7 @@ function App() {
 
       <div className="wrapper">
         <div className="today-weather">
+          <AutocompleteInput />
           <Temperature temperature={24} condition="Partly cloudy" />
           <div className="today-weather_box">
             <InfoBox feelslike={15} windspeed={14} uvindex={1} />
@@ -51,7 +55,7 @@ function App() {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
