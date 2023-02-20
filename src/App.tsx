@@ -9,33 +9,38 @@ import InfoBox from "./components/InfoBox";
 import ForecastBox from "./components/ForecastBox";
 import AutocompleteInput from "./components/AutocompleteInput";
 
+type currentResType = {
+  temp_c: number;
+  is_day: number;
+  condition: string;
+  feelslike: number;
+  wind_kph: number;
+  uv: number;
+  humidity: number;
+  cloud: number;
+};
+
+type forecastType = {
+  temp_c: number;
+  date: string;
+  condition: string;
+};
+
+const clearRes: currentResType = {
+  temp_c: 0,
+  is_day: 1,
+  condition: "",
+  feelslike: 0,
+  wind_kph: 0.0,
+  uv: 0,
+  humidity: 0,
+  cloud: 0,
+};
+
 function App() {
-  const [selectedCity, setSelectedCity] = useState<string>("Warsaw");
-
   //=== API ===//
-
-  type currentResType = {
-    temp_c: number;
-    is_day: number;
-    condition: string;
-    feelslike: number;
-    wind_kph: number;
-    uv: number;
-    humidity: number;
-    cloud: number;
-  };
-
-  const clearRes: currentResType = {
-    temp_c: 0,
-    is_day: 0,
-    condition: "",
-    feelslike: 0,
-    wind_kph: 0.0,
-    uv: 0,
-    humidity: 0,
-    cloud: 0,
-  };
   const [currentRes, setCurrentRes] = useState<currentResType>(clearRes);
+  const [selectedCity, setSelectedCity] = useState<string>("Warsaw");
 
   useEffect(() => {
     fetch(
@@ -44,7 +49,7 @@ function App() {
       .then((res) => res.json())
       .then((result) => {
         const newRes: currentResType = {
-          temp_c: result.current.temp_c,
+          temp_c: Math.round(result.current.temp_c),
           is_day: result.current.is_day,
           condition: result.current.condition.text,
           feelslike: result.current.feelslike_c,
@@ -54,14 +59,14 @@ function App() {
           cloud: result.current.cloud,
         };
         setCurrentRes(newRes);
-        console.log(result.current);
-        console.log(selectedCity);
       });
   }, [selectedCity]);
   console.log(currentRes);
 
   //=== NIGHT THEME ===//
-  currentRes.is_day != 1 && document.body.classList.add("dark");
+  currentRes.is_day != 1
+    ? document.body.classList.add("dark")
+    : document.body.classList.remove("dark");
   //==================//
 
   return (
@@ -73,10 +78,15 @@ function App() {
 
       <div className="wrapper">
         <div className="today-weather">
-          <AutocompleteInput onSelect={() => setSelectedCity("")} />
+          <AutocompleteInput
+            onSelect={setSelectedCity}
+            selected={selectedCity}
+          />
           <Temperature
             temperature={currentRes.temp_c}
             condition={`${currentRes.condition}`}
+            cloudCover={currentRes.cloud}
+            isDay={currentRes.is_day}
           />
           <div className="today-weather_box">
             <InfoBox
