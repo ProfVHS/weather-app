@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-function AutocompleteInput() {
+interface AutocompleteInputProps {
+  onSelect: (arg0: string) => void;
+  selected: string;
+}
+
+function AutocompleteInput({ onSelect, selected }: AutocompleteInputProps) {
   const [cityInput, setCityInput] = useState<string>("");
   const [isFocus, setIsFocus] = useState<boolean>();
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
@@ -40,6 +45,7 @@ function AutocompleteInput() {
         setFocusableFalse();
       } else {
         setFocusableFalse();
+        onSelect(cityInput);
       }
     }
 

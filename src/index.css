@@ -9,8 +9,11 @@ body {
   margin: 0 !important;
   background: linear-gradient(180deg, #cffcfc 0%, #fde8bf 100%);
   background-attachment: fixed;
+
+  transition: 0.3s ease;
 }
 body.dark {
   background: linear-gradient(180deg, #da9d65 0%, #6311a4 50.52%, #460d72 100%);
   background-attachment: fixed;
+  transition: 0.3s ease;
 }
