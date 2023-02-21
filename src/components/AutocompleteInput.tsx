@@ -45,9 +45,7 @@ function AutocompleteInput({ onSelect, selected }: AutocompleteInputProps) {
         setFocusableFalse();
       } else {
         setFocusableFalse();
-        console.log(cityInput);
         onSelect(cityInput);
-        console.log(selected);
       }
     }
 
