@@ -24,6 +24,7 @@ type forecastType = {
   temp_c: number;
   date: string;
   condition: string;
+  cloudAt12: number;
 };
 
 const clearRes: currentResType = {
@@ -37,14 +38,39 @@ const clearRes: currentResType = {
   cloud: 0,
 };
 
+const clearForecast: forecastType = {
+  temp_c: 0,
+  date: "01-01-2000",
+  condition: "",
+  cloudAt12: 0,
+};
+
+const weekday = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 function App() {
   //=== API ===//
-  const [currentRes, setCurrentRes] = useState<currentResType>(clearRes);
+
   const [selectedCity, setSelectedCity] = useState<string>("Warsaw");
+  /*Today's temperature*/
+  const [currentRes, setCurrentRes] = useState<currentResType>(clearRes);
+  /*Tomorrow temperature*/
+  const [forecastTom, setForecastTom] = useState<forecastType>(clearForecast);
+  /*In 2 days temperature*/
+  const [forecastIn2, setForecastIn2] = useState<forecastType>(clearForecast);
+  /*In 3 days temperature*/
+  const [forecastIn3, setForecastIn3] = useState<forecastType>(clearForecast);
 
   useEffect(() => {
     fetch(
-      `http://api.weatherapi.com/v1/current.json?key=ee9dbe50376649bca2624001231902&q=${selectedCity}&aqi=no`
+      `http://api.weatherapi.com/v1/forecast.json?key=ee9dbe50376649bca2624001231902 &q=${selectedCity}&days=4&aqi=no&alerts=no`
     )
       .then((res) => res.json())
       .then((result) => {
@@ -58,10 +84,34 @@ function App() {
           humidity: result.current.humidity,
           cloud: result.current.cloud,
         };
+
+        const tomorrowRes: forecastType = {
+          temp_c: Math.round(result.forecast.forecastday[1].day.avgtemp_c),
+          date: result.forecast.forecastday[1].date,
+          condition: result.forecast.forecastday[1].day.condition.text,
+          cloudAt12: result.forecast.forecastday[1].hour[12].cloud,
+        };
+
+        const in2dRes: forecastType = {
+          temp_c: Math.round(result.forecast.forecastday[2].day.avgtemp_c),
+          date: result.forecast.forecastday[2].date,
+          condition: result.forecast.forecastday[2].day.condition.text,
+          cloudAt12: result.forecast.forecastday[2].hour[12].cloud,
+        };
+
+        const in3dRes: forecastType = {
+          temp_c: Math.round(result.forecast.forecastday[3].day.avgtemp_c),
+          date: result.forecast.forecastday[3].date,
+          condition: result.forecast.forecastday[3].day.condition.text,
+          cloudAt12: result.forecast.forecastday[3].hour[12].cloud,
+        };
+
         setCurrentRes(newRes);
+        setForecastTom(tomorrowRes);
+        setForecastIn2(in2dRes);
+        setForecastIn3(in3dRes);
       });
   }, [selectedCity]);
-  console.log(currentRes);
 
   //=== NIGHT THEME ===//
   currentRes.is_day != 1
@@ -103,18 +153,24 @@ function App() {
         <div className="wrapper__forecasts">
           <ForecastBox
             day="Tomorrow"
-            temperature={18}
-            condition="Partly cloudy"
+            temperature={forecastTom.temp_c}
+            condition={forecastTom.condition}
+            cloudCover={forecastTom.cloudAt12}
+            isDay={currentRes.is_day}
           />
           <ForecastBox
-            day="Monday"
-            temperature={18}
-            condition="Partly cloudy"
+            day={weekday[new Date(forecastIn2.date).getDay()]}
+            temperature={forecastIn2.temp_c}
+            condition={forecastIn2.condition}
+            cloudCover={forecastIn2.cloudAt12}
+            isDay={currentRes.is_day}
           />
           <ForecastBox
-            day="Tuesday"
-            temperature={18}
-            condition="Partly cloudy"
+            day={weekday[new Date(forecastIn3.date).getDay()]}
+            temperature={forecastIn3.temp_c}
+            condition={forecastIn3.condition}
+            cloudCover={forecastIn3.cloudAt12}
+            isDay={currentRes.is_day}
           />
         </div>
       </div>

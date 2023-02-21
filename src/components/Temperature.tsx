@@ -9,6 +9,11 @@ import Moon from "../assets/images/moon.svg";
 import MoonCloudly from "../assets/images/moon-cloudly.svg";
 import MoonOvercast from "../assets/images/moon-overcast.svg";
 
+import Overcast from "../assets/images/overcast.svg";
+import OvercastRain from "../assets/images/overcast-rain.svg";
+
+import Snow from "../assets/images/snow.svg";
+
 interface TemperatureProps {
   temperature: number;
   condition: string;
@@ -24,19 +29,20 @@ function Temperature({
 }: TemperatureProps) {
   const [icon, setIcon] = useState<string>(SunCloudly);
   useEffect(() => {
-    console.log(isDay);
     if (isDay) {
-      console.log("jest");
-      cloudCover <= 25 && setIcon(Sun);
-      cloudCover <= 60 && cloudCover > 25 && setIcon(SunCloudly);
+      cloudCover <= 10 && setIcon(Sun);
+      cloudCover <= 60 && cloudCover > 10 && setIcon(SunCloudly);
       cloudCover > 60 && setIcon(SunOvercast);
       condition.includes("rain") && setIcon(SunRain);
     } else {
-      console.log("nima");
-      cloudCover <= 25 && setIcon(Moon);
-      cloudCover <= 60 && cloudCover > 25 && setIcon(MoonCloudly);
-      cloudCover > 60 && setIcon(MoonOvercast);
+      cloudCover <= 10 && setIcon(Moon);
+      cloudCover <= 60 && cloudCover > 10 && setIcon(MoonCloudly);
+      cloudCover < 90 && cloudCover > 60 && setIcon(MoonOvercast);
+      condition.includes("rain") && setIcon(SunRain);
     }
+    cloudCover > 90 && setIcon(Overcast);
+    cloudCover > 90 && condition.includes("rain") && setIcon(OvercastRain);
+    condition.includes("snow") && setIcon(Snow);
   }, [cloudCover]);
   return (
     <>
