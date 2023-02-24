@@ -8,26 +8,9 @@ import CloudCover from "./components/CloudCover";
 import InfoBox from "./components/InfoBox";
 import ForecastBox from "./components/ForecastBox";
 import AutocompleteInput from "./components/AutocompleteInput";
+import { currentWeatherType, forecastType } from "./types/Types";
 
-type currentResType = {
-  temp_c: number;
-  is_day: number;
-  condition: string;
-  feelslike: number;
-  wind_kph: number;
-  uv: number;
-  humidity: number;
-  cloud: number;
-};
-
-type forecastType = {
-  temp_c: number;
-  date: string;
-  condition: string;
-  cloudAt12: number;
-};
-
-const clearRes: currentResType = {
+const clearRes: currentWeatherType = {
   temp_c: 0,
   is_day: 1,
   condition: "",
@@ -60,7 +43,7 @@ function App() {
 
   const [selectedCity, setSelectedCity] = useState<string>("Warsaw");
   /*Today's temperature*/
-  const [currentRes, setCurrentRes] = useState<currentResType>(clearRes);
+  const [currentRes, setCurrentRes] = useState<currentWeatherType>(clearRes);
   /*Tomorrow temperature*/
   const [forecastTom, setForecastTom] = useState<forecastType>(clearForecast);
   /*In 2 days temperature*/
@@ -74,10 +57,11 @@ function App() {
     )
       .then((res) => res.json())
       .then((result) => {
-        const newRes: currentResType = {
+        const newRes: currentWeatherType = {
           temp_c: Math.round(result.current.temp_c),
           is_day: result.current.is_day,
           condition: result.current.condition.text,
+          code: result.current.condition.code,
           feelslike: result.current.feelslike_c,
           wind_kph: result.current.wind_kph,
           uv: result.current.uv,
@@ -110,11 +94,12 @@ function App() {
         setForecastTom(tomorrowRes);
         setForecastIn2(in2dRes);
         setForecastIn3(in3dRes);
+        console.log(result);
       });
   }, [selectedCity]);
 
   //=== NIGHT THEME ===//
-  currentRes.is_day != 1
+  currentRes.is_day == 0
     ? document.body.classList.add("dark")
     : document.body.classList.remove("dark");
   //==================//
@@ -135,8 +120,7 @@ function App() {
           <Temperature
             temperature={currentRes.temp_c}
             condition={`${currentRes.condition}`}
-            cloudCover={currentRes.cloud}
-            isDay={currentRes.is_day}
+            currentWeather={currentRes}
           />
           <div className="today-weather_box">
             <InfoBox
