@@ -1,0 +1,300 @@
+:root {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.header {
+  background: rgba(250, 254, 255, 0.5);
+  height: 54px;
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.header__appname {
+  font-size: 24px;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 42px;
+}
+.wrapper__forecasts {
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
+}
+@media only screen and (max-width: 768px) {
+  .wrapper__forecasts {
+    height: 200px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+}
+
+.today-weather {
+  position: relative;
+  width: 45%;
+  min-width: 600px;
+  min-height: 300px;
+  background: rgba(250, 254, 255, 0.5);
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.02);
+  border-radius: 16px;
+  margin-top: 54px;
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width: 768px) {
+  .today-weather {
+    flex-direction: column;
+    gap: 15px;
+    min-width: 325px;
+  }
+}
+.today-weather__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.today-weather__condition {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.today-weather__temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.today-weather__temperature__data {
+  font-size: 104px;
+  font-weight: bold;
+  z-index: 1;
+}
+.today-weather__temperature__icon {
+  position: relative;
+  z-index: 2;
+  margin-left: -2em;
+}
+.today-weather__counters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.autocomplete {
+  position: absolute;
+  top: 5px;
+  z-index: 99;
+}
+.autocomplete__cityname {
+  font-size: 28px;
+  font-family: "Comfortaa", cursive;
+  width: 200px;
+  text-align: center;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+}
+.autocomplete__cityname:focus {
+  outline: none;
+  border-bottom: 1px solid rgba(0, 106, 255, 0.8);
+}
+.autocomplete__list {
+  background-color: white;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 0px;
+  overflow-y: scroll;
+  max-height: 100px;
+}
+.autocomplete__item {
+  text-align: center;
+  padding: 8px 0;
+  z-index: 99;
+  transition: 0.2s ease;
+  border-radius: 8px;
+}
+.autocomplete__item__prefix {
+  text-transform: capitalize;
+  font-weight: bolder;
+}
+.autocomplete__item.selected {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.autocomplete__item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.progressbar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progressbar__outer {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  box-shadow: inset 0px 0px 10px -1px rgba(0, 0, 0, 0.15);
+  align-items: center;
+}
+.progressbar__inner {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.progressbar__inner__title {
+  font-size: 10px;
+}
+.progressbar__inner__value {
+  font-size: 22px;
+}
+.progressbar__circle {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 12px;
+  stroke-dasharray: 264;
+  transition: 0.5s ease;
+}
+.dark .progressbar__circle {
+  stroke: url(#GradientColorDark);
+}
+.progressbar__backlight {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 4px;
+  stroke-dasharray: 326;
+  transition: 0.5s ease;
+  filter: blur(6px);
+}
+.dark .progressbar__backlight {
+  stroke: url(#GradientColorDark);
+}
+
+.progressbar svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(90deg);
+}
+
+.infobox {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 26px 26px 14px;
+  gap: 0 16px;
+}
+.infobox__icon {
+  position: relative;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.infobox__value {
+  grid-row: 2;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+.infobox__name {
+  grid-row: 3;
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+.infobox__uvicon {
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  right: 14px;
+  bottom: 0;
+  transition: 0.3s ease;
+}
+.infobox__uvicon.low {
+  background-color: #66bd53;
+}
+.infobox__uvicon.medium {
+  background-color: #fcbc22;
+}
+.infobox__uvicon.high {
+  background-color: #f66a34;
+}
+.infobox__uvicon.veryhigh {
+  background-color: #ed144a;
+}
+
+.forecastwrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+.forecastwrapper__day {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.forecastbox {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(250, 254, 255, 0.5);
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.02);
+}
+.forecastbox__temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.forecastbox__temperature span {
+  font-size: 42px;
+  position: relative;
+  right: -18%;
+  font-weight: bold;
+}
+.forecastbox__temperature img {
+  position: relative;
+}
+.forecastbox__condition {
+  font-size: 12px;
+}/*# sourceMappingURL=App.css.map */
