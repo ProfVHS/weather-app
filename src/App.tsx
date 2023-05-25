@@ -64,9 +64,16 @@ function App() {
     const cityData = citiesList.filter((item) => item.name === selectedCity);
 
     console.log(cityData[0]);
+    const timeNow = roundToNearestMinutes(new Date(), {
+      nearestTo: 30,
+      roundingMethod: "ceil",
+    });
 
+    const todayDate = format(timeNow, "yyyy-LL-dd");
+
+    const in3DaysDate = format(addDays(timeNow, 3), "yyyy-LL-dd");
     fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${cityData[0].lat}&longitude=${cityData[0].lng}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,rain,snowfall,weathercode,cloudcover,windspeed_10m,uv_index,is_day&start_date=2023-05-24&end_date=2023-05-27`
+      `https://api.open-meteo.com/v1/forecast?latitude=${cityData[0].lat}&longitude=${cityData[0].lng}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,rain,snowfall,weathercode,cloudcover,windspeed_10m,uv_index,is_day&start_date=${todayDate}&end_date=${in3DaysDate}`
     )
       .then((res) => res.json())
       .then((result) => {
