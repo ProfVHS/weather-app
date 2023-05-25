@@ -8,53 +8,92 @@ import SunRain from "../assets/images/sun-rain.svg";
 import Moon from "../assets/images/moon.svg";
 import MoonCloudly from "../assets/images/moon-cloudly.svg";
 import MoonOvercast from "../assets/images/moon-overcast.svg";
+import MoonRain from "../assets/images/moon-rain.svg";
 
 import Overcast from "../assets/images/overcast.svg";
 import OvercastRain from "../assets/images/overcast-rain.svg";
 
 import Snow from "../assets/images/snow.svg";
 
+import ThuderRain from "../assets/images/thunder-rain.svg";
+import Thunder from "../assets/images/thunder.svg";
+import { weatherType } from "../shared/Types";
+
 interface ForecastBoxProps {
   day: string;
   temperature: number;
-  condition: string;
   cloudCover: number;
   isDay: number;
+  weather: weatherType;
 }
+
+const snowCodes = [71, 73, 75, 77, 85, 86];
+
+const rainCodes = [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82];
+
+const thunderCodes = [95];
+const thunderRainCodes = [96, 99];
 
 function ForecastBox({
   day,
   temperature,
-  condition,
   cloudCover,
   isDay,
+  weather,
 }: ForecastBoxProps) {
   const [icon, setIcon] = useState<string>(SunCloudly);
+
   useEffect(() => {
-    if (isDay) {
-      cloudCover <= 10 && setIcon(Sun);
-      cloudCover <= 60 && cloudCover > 10 && setIcon(SunCloudly);
-      cloudCover > 60 && setIcon(SunOvercast);
-      condition.includes("rain") && setIcon(SunRain);
-    } else {
-      cloudCover <= 10 && setIcon(Moon);
-      cloudCover <= 60 && cloudCover > 10 && setIcon(MoonCloudly);
-      cloudCover < 90 && cloudCover > 60 && setIcon(MoonOvercast);
-      condition.includes("rain") && setIcon(SunRain);
+    //=== OVERCAST ===//
+    if (weather.code === 3) {
+      setIcon(Overcast);
     }
-    cloudCover > 90 && setIcon(Overcast);
-    cloudCover > 90 && condition.includes("rain") && setIcon(OvercastRain);
-    condition.includes("snow") && setIcon(Snow);
-  }, [cloudCover]);
+
+    //=== CLOUDLY ===//
+    if (weather.code === 2) {
+      isDay == 1 ? setIcon(SunOvercast) : setIcon(MoonOvercast);
+    }
+
+    //=== PARTLY CLOUDLY ===//
+    if (weather.code === 1) {
+      isDay == 1 ? setIcon(SunCloudly) : setIcon(MoonCloudly);
+    }
+
+    //=== CLEAR SKY ===//
+    if (weather.code === 0) {
+      isDay == 1 ? setIcon(Sun) : setIcon(Moon);
+    }
+
+    //=== RAIN ===//
+    if (rainCodes.includes(weather.code)) {
+      isDay ? setIcon(SunRain) : setIcon(MoonRain);
+    }
+
+    //=== SNOW ===//
+    if (snowCodes.includes(weather.code)) {
+      setIcon(Snow);
+    }
+
+    //=== THUNDER ===//
+    if (thunderCodes.includes(weather.code)) {
+      setIcon(Thunder);
+    }
+
+    //=== THUNDER WITH RAIN ===//
+    if (thunderRainCodes.includes(weather.code)) {
+      setIcon(ThuderRain);
+    }
+  }, [weather]);
+
   return (
     <div className="forecastwrapper">
       <span className="forecastwrapper__day">{day}</span>
       <div className="forecastbox">
         <div className="forecastbox__temperature">
           <span>{temperature}°</span>
-          <img src={icon} width={100} />
+          <img src={icon} width={"50px"} />
         </div>
-        <span className="forecastbox__condition">{condition}</span>
+        <span className="forecastbox__condition"></span>
       </div>
     </div>
   );

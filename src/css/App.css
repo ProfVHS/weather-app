@@ -88,7 +88,7 @@
 .today-weather__temperature__icon {
   position: relative;
   z-index: 2;
-  margin-left: -4em;
+  margin-left: -2em;
 }
 .today-weather__counters {
   display: flex;
